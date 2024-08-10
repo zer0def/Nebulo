@@ -58,8 +58,8 @@ data class DnsQuery(
 
         private fun responsesBlockHost(responses:List<String>):Boolean {
             return parseResponses(responses).any {
-                (it.type == Record.TYPE.A && (it.payload as A).toString() == "0.0.0.0") ||
-                        (it.type == Record.TYPE.AAAA && (it.payload as AAAA).toString().equalsAny("::0", "0:0:0:0:0:0:0:0"))
+                (it.type == Record.TYPE.A && (it.payload as A).toString() == "127.69.69.69") ||
+                        (it.type == Record.TYPE.AAAA && (it.payload as AAAA).toString().equalsAny("::1", "0:0:0:0:0:0:0:1"))
             }
         }
 

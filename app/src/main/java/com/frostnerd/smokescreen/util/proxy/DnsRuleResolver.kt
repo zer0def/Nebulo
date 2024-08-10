@@ -136,13 +136,9 @@ class DnsRuleResolver(context: Context) : LocalResolver(false) {
                     dao.findRuleTarget(uniformQuestion, type, useUserRules)
                         ?.let {
                             when (it) {
-                                "0" -> {
-                                    if(type == Record.TYPE.AAAA) "::"
-                                    else "0.0.0.0"
-                                }
                                 "1" -> {
                                     if (type == Record.TYPE.AAAA) "::1"
-                                    else "127.0.0.1"
+                                    else "127.69.69.69"
                                 }
                                 else -> it
                             }
@@ -170,13 +166,9 @@ class DnsRuleResolver(context: Context) : LocalResolver(false) {
                         else it.target
                     }?.let {
                         when (it) {
-                            "0" -> {
-                                if(type == Record.TYPE.AAAA) "::"
-                                else "0.0.0.0"
-                            }
                             "1" -> {
                                 if (type == Record.TYPE.AAAA) "::1"
-                                else "127.0.0.1"
+                                else "127.69.69.69"
                             }
                             else -> it
                         }

@@ -98,7 +98,7 @@ class DnsRuleDialog(context: Context, dnsRule: DnsRule? = null, onRuleCreated: (
                     }
                     val primaryTarget = when {
                         isWhitelist -> ""
-                        isBlockHost -> "0.0.0.0"
+                        isBlockHost -> "127.69.69.69"
                         else -> when (type) {
                             Record.TYPE.A, Record.TYPE.ANY -> view.ipv4Address.text.toString()
                             else -> view.ipv6Address.text.toString()
@@ -106,7 +106,7 @@ class DnsRuleDialog(context: Context, dnsRule: DnsRule? = null, onRuleCreated: (
                     }
                     val secondaryTarget = when {
                         isWhitelist -> null
-                        isBlockHost -> "::"
+                        isBlockHost -> "::1"
                         else -> when (type) {
                             Record.TYPE.AAAA, Record.TYPE.ANY -> view.ipv6Address.text.toString()
                             else -> null
@@ -176,7 +176,7 @@ class DnsRuleDialog(context: Context, dnsRule: DnsRule? = null, onRuleCreated: (
                         }
                         else -> {}
                     }
-                    isBlockHost = dnsRule.target == "0.0.0.0" && dnsRule.ipv6Target?.equalsAny("::1", "::") == true
+                    isBlockHost = dnsRule.target == "127.69.69.69" && dnsRule.ipv6Target?.equalsAny("::1") == true
                 }
                 if(!isBlockHost) {
                     view.blockHost.isChecked = false

@@ -39,7 +39,7 @@ class ProxyQuicHandler(
     engine: QuicEngine
 ):AbstractQuicDnsHandle(upstreamAddresses, connectTimeout, engine) {
     override val handlesSpecificRequests: Boolean = ProxyBypassHandler.knownSearchDomains.isNotEmpty()
-    private val dummyUpstreamAddress = UpstreamAddress(AddressCreator.fromHostAddress("0.0.0.0"), 1)
+    private val dummyUpstreamAddress = UpstreamAddress(AddressCreator.fromHostAddress("127.69.69.69"), 1)
 
     override fun shouldHandleRequest(dnsMessage: DnsMessage): Boolean {
         return if(dnsMessage.questions.size > 0) {
@@ -54,8 +54,8 @@ class ProxyQuicHandler(
         return if(dnsMessage.responseCode == DnsMessage.RESPONSE_CODE.REFUSED) {
             if(dnsMessage.questions.isNotEmpty()) {
                 val answer = if(dnsMessage.question.type == Record.TYPE.A) {
-                    A("0.0.0.0")
-                } else AAAA("::")
+                    A("127.69.69.69")
+                } else AAAA("::1")
                 dnsMessage.asBuilder().setResponseCode(DnsMessage.RESPONSE_CODE.NO_ERROR).addAnswer(
                     Record(
                         dnsMessage.question.name,

@@ -81,8 +81,8 @@ class ProxyTlsHandler(
         return if(dnsMessage.responseCode == DnsMessage.RESPONSE_CODE.REFUSED) {
             if(dnsMessage.questions.isNotEmpty()) {
                 val answer = if(dnsMessage.question.type == Record.TYPE.A) {
-                    A("0.0.0.0")
-                } else AAAA("::")
+                    A("127.69.69.69")
+                } else AAAA("::1")
                 dnsMessage.asBuilder().setResponseCode(DnsMessage.RESPONSE_CODE.NO_ERROR).addAnswer(Record(dnsMessage.question.name, dnsMessage.question.type, Record.CLASS.IN.value, 50L, answer)).build()
             } else dnsMessage
         } else dnsMessage

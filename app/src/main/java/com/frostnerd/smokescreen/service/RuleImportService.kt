@@ -383,8 +383,7 @@ class RuleImportService : IntentService("RuleImportService") {
                 val type = if (target.contains(":")) Record.TYPE.AAAA else Record.TYPE.A
                 target = target.let {
                     when (it) {
-                        "0.0.0.0", "::", "::0" -> "0"
-                        "127.0.0.1", "::1" -> "1"
+                        "0.0.0.0", "::", "::0", "127.0.0.1", "::1" -> "1"
                         else -> it
                     }
                 }
@@ -407,8 +406,7 @@ class RuleImportService : IntentService("RuleImportService") {
                     val type = if (target.contains(":")) Record.TYPE.AAAA else Record.TYPE.A
                     target = target.let {
                         when (it) {
-                            "0.0.0.0", "::", "::0" -> "0"
-                            "127.0.0.1", "::1" -> "1"
+                            "0.0.0.0", "::", "::0", "127.0.0.1", "::1" -> "1"
                             else -> it
                         }
                     }

@@ -37,7 +37,7 @@ class ProxyHttpsHandler(
 ) :
     AbstractHttpsDNSHandle(serverConfigurations, connectTimeout, quicEngine) {
     override val handlesSpecificRequests: Boolean = ProxyBypassHandler.knownSearchDomains.isNotEmpty()
-    private val dummyUpstreamAddress = UpstreamAddress(AddressCreator.fromHostAddress("0.0.0.0"), 1)
+    private val dummyUpstreamAddress = UpstreamAddress(AddressCreator.fromHostAddress("127.69.69.69"), 1)
 
     override fun name(): String {
         return "ProxyHttpsHandler"
@@ -56,8 +56,8 @@ class ProxyHttpsHandler(
         return if(dnsMessage.responseCode == DnsMessage.RESPONSE_CODE.REFUSED) {
             if(dnsMessage.questions.isNotEmpty()) {
                 val answer = if(dnsMessage.question.type == org.minidns.record.Record.TYPE.A) {
-                    org.minidns.record.A("0.0.0.0")
-                } else org.minidns.record.AAAA("::")
+                    org.minidns.record.A("127.69.69.69")
+                } else org.minidns.record.AAAA("::1")
                 dnsMessage.asBuilder().setResponseCode(DnsMessage.RESPONSE_CODE.NO_ERROR).addAnswer(
                     org.minidns.record.Record(
                         dnsMessage.question.name,
